@@ -1,0 +1,8 @@
+Echo Tiles lets you load your own audio files and generates responsive rhythm levels tailored to your songs.
+
+Whether you love EDM, classical piano, pop hits, or indie beats, tap along to the music you already own—completely offline, private, and ad-free.
+
+How to Play:
+1. Select any audio track stored on your device.
+2. Tap the rhythm tiles as they cascade down the lanes.
+3. Keep your streak alive to build combos and set new high scores!
