@@ -4,7 +4,6 @@ enum AppThemeId { clean, dark, amoled, forest, ocean, sunset }
 
 class AppThemeData {
   final AppThemeId id;
-  final String name;
   final String emoji;
   final Color background;
   final Color surface;
@@ -35,7 +34,6 @@ class AppThemeData {
 
   const AppThemeData({
     required this.id,
-    required this.name,
     required this.emoji,
     required this.background,
     required this.surface,
@@ -104,7 +102,6 @@ class AppThemeData {
 class AppThemes {
   static const clean = AppThemeData(
     id: AppThemeId.clean,
-    name: 'Clean',
     emoji: '⬜',
     background: Color(0xFFF8FAFC),
     surface: Color(0xFFFFFFFF),
@@ -136,7 +133,6 @@ class AppThemes {
 
   static const dark = AppThemeData(
     id: AppThemeId.dark,
-    name: 'Dark',
     emoji: '🌑',
     background: Color(0xFF0F172A),
     surface: Color(0xFF1E293B),
@@ -168,7 +164,6 @@ class AppThemes {
 
   static const amoled = AppThemeData(
     id: AppThemeId.amoled,
-    name: 'AMOLED Dark',
     emoji: '🖤',
     background: Color(0xFF000000),
     surface: Color(0xFF0A0A0A),
@@ -200,7 +195,6 @@ class AppThemes {
 
   static const forest = AppThemeData(
     id: AppThemeId.forest,
-    name: 'Forest',
     emoji: '🌿',
     background: Color(0xFF1A2E1A),
     surface: Color(0xFF243324),
@@ -232,7 +226,6 @@ class AppThemes {
 
   static const ocean = AppThemeData(
     id: AppThemeId.ocean,
-    name: 'Ocean',
     emoji: '🌊',
     background: Color(0xFF0D1B2A),
     surface: Color(0xFF1B2D3F),
@@ -264,7 +257,6 @@ class AppThemes {
 
   static const sunset = AppThemeData(
     id: AppThemeId.sunset,
-    name: 'Sunset',
     emoji: '🌅',
     background: Color(0xFF1C0A00),
     surface: Color(0xFF2D1200),

@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../l10n/app_localizations.dart';
 import '../models/app_theme.dart';
 import '../models/game_models.dart';
 import '../services/audio_service.dart';
@@ -15,11 +16,13 @@ import 'settings_screen.dart';
 class HomeScreen extends StatefulWidget {
   final AppThemeData appTheme;
   final ValueChanged<AppThemeId> onThemeChanged;
+  final ValueChanged<Locale?> onLocaleChanged;
 
   const HomeScreen({
     super.key,
     required this.appTheme,
     required this.onThemeChanged,
+    required this.onLocaleChanged,
   });
 
   @override
@@ -60,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _showAddSongDialog() async {
+    final l10n = AppLocalizations.of(context);
     final titleController = TextEditingController();
     String? pickedFilePath;
     String? pickedFileName;
@@ -76,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(24),
               ),
               title: Text(
-                'ADD SONG',
+                l10n.addSong,
                 style: TextStyle(
                   fontFamily: 'Fredoka',
                   fontWeight: FontWeight.w900,
@@ -92,8 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextField(
                       controller: titleController,
                       decoration: InputDecoration(
-                        labelText: 'Song Name',
-                        hintText: 'Enter song title',
+                        labelText: l10n.songName,
+                        hintText: l10n.songNameHint,
                         labelStyle: TextStyle(color: theme.textMuted),
                         hintStyle: TextStyle(
                           color: theme.textMuted.withValues(alpha: 0.6),
@@ -163,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         size: 20,
                       ),
                       label: Text(
-                        pickedFileName ?? 'Choose Audio',
+                        pickedFileName ?? l10n.chooseAudio,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -182,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 TextButton(
                   onPressed: () => Navigator.pop(ctx),
                   child: Text(
-                    'CANCEL',
+                    l10n.cancel,
                     style: TextStyle(
                       color: theme.textMuted,
                       fontWeight: FontWeight.w800,
@@ -207,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     final song = SongItem(
                       id: 'custom_${DateTime.now().millisecondsSinceEpoch}',
                       title: title,
-                      artist: 'Custom',
+                      artist: l10n.customArtist,
                       assetAudio: pickedFilePath!,
                       bpm: 120,
                       notesCount: notesCount,
@@ -216,9 +220,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     if (ctx.mounted) Navigator.pop(ctx);
                     _loadData();
                   },
-                  child: const Text(
-                    'ADD',
-                    style: TextStyle(fontWeight: FontWeight.w900),
+                  child: Text(
+                    l10n.add,
+                    style: const TextStyle(fontWeight: FontWeight.w900),
                   ),
                 ),
               ],
@@ -250,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
           size: 24,
         ),
         label: Text(
-          'Add your song',
+          AppLocalizations.of(context).addYourSong,
           style: TextStyle(
             color: theme.playBg,
             fontWeight: FontWeight.w900,
@@ -290,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
           size: 20,
         ),
         label: Text(
-          'How to play',
+          AppLocalizations.of(context).howToPlay,
           style: TextStyle(
             color: theme.textSecondary,
             fontWeight: FontWeight.w800,
@@ -327,7 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'NO SONGS YET',
+                    AppLocalizations.of(context).noSongsYet,
                     style: TextStyle(
                       fontFamily: 'Fredoka',
                       fontSize: 22,
@@ -338,7 +342,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Add your audio files below to start playing!',
+                    AppLocalizations.of(context).noSongsHint,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
@@ -455,7 +459,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'TAP TO THE BEAT',
+                          AppLocalizations.of(context).tagline,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'Fredoka',
@@ -550,7 +554,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           const SizedBox(width: 10),
                                           if (song.highScore > 0)
                                             Text(
-                                              'BEST: ${song.highScore}',
+                                              AppLocalizations.of(context).bestScoreShort(song.highScore),
                                               style: TextStyle(
                                                 fontSize: 11,
                                                 fontWeight: FontWeight.w800,
@@ -608,6 +612,7 @@ class _HomeScreenState extends State<HomeScreen> {
           : SettingsScreen(
               appTheme: widget.appTheme,
               onThemeChanged: widget.onThemeChanged,
+              onLocaleChanged: widget.onLocaleChanged,
             ),
     );
   }
