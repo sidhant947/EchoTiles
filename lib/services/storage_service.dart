@@ -8,6 +8,7 @@ class StorageService {
   static const String keySound = 'sound_enabled';
   static const String keyBestCombo = 'best_combo';
   static const String keyCustomSongs = 'custom_songs';
+  static const String keyLocale = 'locale_code';
 
   static late SharedPreferences _prefs;
 
@@ -21,6 +22,18 @@ class StorageService {
 
   static Future<void> setThemeId(String themeId) async {
     await _prefs.setString(keyTheme, themeId);
+  }
+
+  static String? getLocaleCode() {
+    return _prefs.getString(keyLocale);
+  }
+
+  static Future<void> setLocaleCode(String? value) async {
+    if (value == null) {
+      await _prefs.remove(keyLocale);
+    } else {
+      await _prefs.setString(keyLocale, value);
+    }
   }
 
   static bool getHapticEnabled() {

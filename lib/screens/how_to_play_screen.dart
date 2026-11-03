@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
 import '../models/app_theme.dart';
 import '../services/haptics.dart';
 
@@ -14,6 +15,7 @@ class HowToPlayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = appTheme;
+    final l10n = AppLocalizations.of(context);
 
     return Scaffold(
       backgroundColor: theme.background,
@@ -30,7 +32,7 @@ class HowToPlayScreen extends StatelessWidget {
           },
         ),
         title: Text(
-          'HOW TO PLAY',
+          l10n.howToPlayTitle,
           style: TextStyle(
             fontFamily: 'Fredoka',
             fontSize: 20,
@@ -46,37 +48,37 @@ class HowToPlayScreen extends StatelessWidget {
           children: [
             _buildCard(
               theme: theme,
-              title: 'SINGLE TAP TILES',
-              subtitle: 'Tap each tile right as it hits the bottom line.',
+              title: l10n.singleTapTitle,
+              subtitle: l10n.singleTapSubtitle,
               visual: _SingleTileVisual(theme: theme),
-              points: const [
-                'Tap when the tile reaches the white judgment line.',
-                'Tapping closer to the center gives PERFECT! rating.',
-                'A single tap clears the tile immediately.',
+              points: [
+                l10n.singleTapPoint1,
+                l10n.singleTapPoint2,
+                l10n.singleTapPoint3,
               ],
             ),
             const SizedBox(height: 18),
             _buildCard(
               theme: theme,
-              title: 'HOLD TILES',
-              subtitle: 'Identified by the circle head and straight line.',
+              title: l10n.holdTilesTitle,
+              subtitle: l10n.holdTilesSubtitle,
               visual: _HoldTileVisual(theme: theme),
-              points: const [
-                'Tap the circle head when it hits the line, then keep holding.',
-                'Holding charges bonus points and builds your combo.',
-                'Releasing early won\'t cause a game over—any tap or hold is valid!',
+              points: [
+                l10n.holdTilesPoint1,
+                l10n.holdTilesPoint2,
+                l10n.holdTilesPoint3,
               ],
             ),
             const SizedBox(height: 18),
             _buildCard(
               theme: theme,
-              title: 'AVOID MISTAKES',
-              subtitle: 'Keep your song streak alive.',
+              title: l10n.avoidMistakesTitle,
+              subtitle: l10n.avoidMistakesSubtitle,
               visual: _MistakeVisual(theme: theme),
-              points: const [
-                'Never tap an empty lane where no tile is passing.',
-                'Don\'t let tiles scroll past the bottom without touching them.',
-                'Play with multiple fingers for fast BPM songs.',
+              points: [
+                l10n.avoidMistakesPoint1,
+                l10n.avoidMistakesPoint2,
+                l10n.avoidMistakesPoint3,
               ],
             ),
             const SizedBox(height: 24),
@@ -94,9 +96,9 @@ class HowToPlayScreen extends StatelessWidget {
                 ),
                 elevation: 0,
               ),
-              child: const Text(
-                'GOT IT, LET\'S PLAY!',
-                style: TextStyle(
+              child: Text(
+                AppLocalizations.of(context).gotItLetsPlay,
+                style: const TextStyle(
                   fontFamily: 'Fredoka',
                   fontSize: 16,
                   fontWeight: FontWeight.w900,
@@ -237,7 +239,7 @@ class _SingleTileVisual extends StatelessWidget {
               bottom: 18,
               child: Center(
                 child: Text(
-                  'JUDGMENT LINE',
+                  AppLocalizations.of(context).judgmentLine,
                   style: TextStyle(
                     fontSize: 8.5,
                     fontWeight: FontWeight.w800,
@@ -267,9 +269,9 @@ class _SingleTileVisual extends StatelessWidget {
                             color: theme.playBg,
                             borderRadius: BorderRadius.circular(6),
                           ),
-                          child: const Text(
-                            'TAP',
-                            style: TextStyle(
+                          child: Text(
+                            AppLocalizations.of(context).tap,
+                            style: const TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w900,
                               color: Colors.white,
@@ -378,7 +380,7 @@ class _HoldTileVisual extends StatelessWidget {
                     Icon(Icons.bolt_rounded, size: 14, color: theme.playBg),
                     const SizedBox(width: 4),
                     Text(
-                      'CHARGING COMBO',
+                      AppLocalizations.of(context).chargingCombo,
                       style: TextStyle(
                         fontSize: 9.5,
                         fontWeight: FontWeight.w900,
@@ -492,13 +494,13 @@ class _MistakeVisual extends StatelessWidget {
             child: const Icon(Icons.close_rounded, color: Colors.white, size: 28),
           ),
           const SizedBox(width: 14),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'MISS TRIGGER',
-                  style: TextStyle(
+                  AppLocalizations.of(context).missTriggerTitle,
+                  style: const TextStyle(
                     fontFamily: 'Fredoka',
                     fontSize: 14,
                     fontWeight: FontWeight.w900,
@@ -506,10 +508,10 @@ class _MistakeVisual extends StatelessWidget {
                     color: Color(0xFFEF4444),
                   ),
                 ),
-                SizedBox(height: 2),
+                const SizedBox(height: 2),
                 Text(
-                  'Tapping empty spaces or letting tiles fall through ends your run immediately.',
-                  style: TextStyle(
+                  AppLocalizations.of(context).missTriggerText,
+                  style: const TextStyle(
                     fontSize: 12.5,
                     fontWeight: FontWeight.w600,
                     color: Colors.white70,

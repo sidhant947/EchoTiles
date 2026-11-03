@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import '../l10n/app_localizations.dart';
 import '../models/app_theme.dart';
 import '../models/game_models.dart';
 import '../services/audio_service.dart';
@@ -264,7 +265,6 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
             final sh = _screenSize.height > 0 ? _screenSize.height : 800.0;
             _feedbacks.add(
               HitFeedback(
-                text: 'PERFECT!',
                 quality: HitQuality.perfect,
                 x: (tile.lane + 0.5) * (sw / 4),
                 y: sh * _targetLineFactor,
@@ -350,7 +350,6 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
     if (mistapOffset != null) {
       _feedbacks.add(
         HitFeedback(
-          text: 'MISS!',
           quality: HitQuality.miss,
           x: mistapOffset.dx,
           y: mistapOffset.dy,
@@ -445,20 +444,16 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
 
     HitQuality quality;
     int addScore;
-    String label;
 
     if (dist < 0.05) {
       quality = HitQuality.perfect;
       addScore = 100;
-      label = 'PERFECT!';
     } else if (dist < 0.11) {
       quality = HitQuality.great;
       addScore = 80;
-      label = 'GREAT!';
     } else {
       quality = HitQuality.good;
       addScore = 50;
-      label = 'GOOD';
     }
 
     _combo++;
@@ -475,7 +470,6 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
 
     _feedbacks.add(
       HitFeedback(
-        text: label,
         quality: quality,
         x: tapX,
         y: tapY,
@@ -542,6 +536,13 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     final theme = widget.appTheme;
+    final l10n = AppLocalizations.of(context);
+    final qualityLabels = {
+      HitQuality.perfect: l10n.qualityPerfect,
+      HitQuality.great: l10n.qualityGreat,
+      HitQuality.good: l10n.qualityGood,
+      HitQuality.miss: l10n.qualityMiss,
+    };
 
     return Scaffold(
       backgroundColor: theme.background,
@@ -567,6 +568,8 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                       isReady: _status == GameStatus.ready,
                       targetLineFactor: _targetLineFactor,
                       tileHeightFactor: _tileHeightFactor,
+                      startLabel: l10n.start,
+                      qualityLabels: qualityLabels,
                     ),
                   ),
                 );
@@ -637,7 +640,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
-                                '${_combo}x COMBO',
+                                AppLocalizations.of(context).comboLabel(_combo),
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 11,
@@ -706,7 +709,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'PAUSED',
+                AppLocalizations.of(context).paused,
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.w900,
@@ -727,9 +730,9 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                   elevation: 0,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
-                child: const Text(
-                  'RESUME',
-                  style: TextStyle(
+                child: Text(
+                  AppLocalizations.of(context).resume,
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1.2,
@@ -745,7 +748,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
                 child: Text(
-                  'HOME',
+                  AppLocalizations.of(context).home,
                   style: TextStyle(
                     color: theme.textPrimary,
                     fontSize: 16,
@@ -786,7 +789,9 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                isWin ? 'SONG COMPLETED!' : 'OUT OF RHYTHM!',
+                isWin
+                    ? AppLocalizations.of(context).songCompleted
+                    : AppLocalizations.of(context).outOfRhythm,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
@@ -822,7 +827,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Score', style: TextStyle(color: theme.textMuted, fontWeight: FontWeight.w800)),
+                        Text(AppLocalizations.of(context).score, style: TextStyle(color: theme.textMuted, fontWeight: FontWeight.w800)),
                         Text('$_score', style: TextStyle(color: theme.textPrimary, fontWeight: FontWeight.w900, fontSize: 18)),
                       ],
                     ),
@@ -830,7 +835,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Best Score', style: TextStyle(color: theme.textMuted, fontWeight: FontWeight.w800)),
+                        Text(AppLocalizations.of(context).bestScore, style: TextStyle(color: theme.textMuted, fontWeight: FontWeight.w800)),
                         Text('$highScore', style: TextStyle(color: theme.textPrimary, fontWeight: FontWeight.w900, fontSize: 18)),
                       ],
                     ),
@@ -852,7 +857,9 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
                 child: Text(
-                  isWin ? 'PLAY AGAIN' : 'TRY AGAIN',
+                  isWin
+                      ? AppLocalizations.of(context).playAgain
+                      : AppLocalizations.of(context).tryAgain,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
@@ -869,7 +876,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
                 child: Text(
-                  'HOME',
+                  AppLocalizations.of(context).home,
                   style: TextStyle(
                     color: theme.textPrimary,
                     fontSize: 16,
@@ -894,6 +901,8 @@ class _GameTilesPainter extends CustomPainter {
   final bool isReady;
   final double targetLineFactor;
   final double tileHeightFactor;
+  final String startLabel;
+  final Map<HitQuality, String> qualityLabels;
 
   _GameTilesPainter({
     required this.tiles,
@@ -903,6 +912,8 @@ class _GameTilesPainter extends CustomPainter {
     required this.isReady,
     required this.targetLineFactor,
     required this.tileHeightFactor,
+    required this.startLabel,
+    required this.qualityLabels,
   });
 
   @override
@@ -1010,9 +1021,9 @@ class _GameTilesPainter extends CustomPainter {
 
       if (isReady && tile.id == 0) {
         final tp = TextPainter(
-          text: const TextSpan(
-            text: 'START',
-            style: TextStyle(
+          text: TextSpan(
+            text: startLabel,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.w900,
@@ -1056,7 +1067,7 @@ class _GameTilesPainter extends CustomPainter {
 
       final tp = TextPainter(
         text: TextSpan(
-          text: fb.text,
+          text: qualityLabels[fb.quality] ?? '',
           style: TextStyle(
             color: color.withValues(alpha: alpha),
             fontSize: 20,

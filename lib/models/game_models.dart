@@ -93,14 +93,12 @@ class GameTile {
 }
 
 class HitFeedback {
-  final String text;
   final HitQuality quality;
   final double x;
   final double y;
   final int timestamp;
 
   const HitFeedback({
-    required this.text,
     required this.quality,
     required this.x,
     required this.y,
