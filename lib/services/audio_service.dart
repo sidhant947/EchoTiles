@@ -17,6 +17,7 @@ class AudioService {
   Future<void> init() async {
     await _musicPlayer.setReleaseMode(ReleaseMode.stop);
     await _musicPlayer.setVolume(1.0);
+    await _musicPlayer.setPlaybackRate(1.0);
     _musicPlayer.onDurationChanged.listen((d) {
       _currentDuration = d;
     });
@@ -63,6 +64,7 @@ class AudioService {
     try {
       await _musicPlayer.stop();
       await _musicPlayer.setVolume(1.0);
+      await _musicPlayer.setPlaybackRate(1.0);
       if (audioPath.startsWith('assets/')) {
         final cleanPath = audioPath.substring(7);
         await _musicPlayer.play(AssetSource(cleanPath));

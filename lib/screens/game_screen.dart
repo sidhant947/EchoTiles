@@ -46,6 +46,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
   int _lastLane = -1;
   int _failedLane = -1;
   int _totalNotes = 160;
+  bool _lastWasDouble = false;
 
   double _baseScrollSpeed = 0.50;
   double _songProgress = 0.0;
@@ -82,8 +83,12 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
 
     _positionSub = AudioService.instance.onPositionChanged.listen((pos) {
       if (_audioDuration != null && _audioDuration!.inMilliseconds > 0 && mounted) {
+        final progress = (pos.inMilliseconds / _audioDuration!.inMilliseconds).clamp(0.0, 1.0);
         setState(() {
-          _songProgress = (pos.inMilliseconds / _audioDuration!.inMilliseconds).clamp(0.0, 1.0);
+          _songProgress = progress;
+          if (progress >= 1.0) {
+            _songAudioFinished = true;
+          }
         });
       }
     });
@@ -107,6 +112,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
     _lastLane = -1;
     _failedLane = -1;
     _songAudioFinished = false;
+    _lastWasDouble = false;
     _totalNotes = widget.song.notesCount;
     if (_audioDuration != null && _audioDuration!.inMilliseconds > 0) {
       final calcNotes = (_audioDuration!.inMilliseconds / 1000.0 * ((widget.song.bpm / 120.0) * 2.3)).round();
@@ -186,7 +192,8 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
   }
 
   void _spawnTile({double? initialY}) {
-    if (_songAudioFinished || _nextTileIndex >= _totalNotes) return;
+    final hasAudio = widget.song.assetAudio.isNotEmpty;
+    if (hasAudio ? _songAudioFinished : _nextTileIndex >= _totalNotes) return;
 
     final lane = _generateNextLane();
     final double gap = _gapPatternQueue.isNotEmpty
@@ -222,6 +229,31 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
       ),
     );
     _nextTileIndex++;
+
+    final allowDouble = initialY == null &&
+        _nextTileIndex >= 8 &&
+        !_lastWasDouble &&
+        _rng.nextDouble() < 0.50;
+
+    if (allowDouble) {
+      final candidates = [for (int i = 0; i < 4; i++) if ((i - lane).abs() >= 2) i];
+      final secondLane = candidates[_rng.nextInt(candidates.length)];
+      _tiles.add(
+        GameTile(
+          id: _nextTileIndex,
+          lane: secondLane,
+          y: yPos,
+          length: length,
+          isLong: isLong,
+          noteIndex: _nextTileIndex,
+        ),
+      );
+      _nextTileIndex++;
+      _lastWasDouble = true;
+      _lastLane = secondLane;
+    } else {
+      _lastWasDouble = false;
+    }
   }
 
   void _onTick(Duration elapsed) {
@@ -230,13 +262,12 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
       return;
     }
 
-    final dt = (elapsed - _lastElapsed).inMicroseconds / 1000000.0;
+    double dt = (elapsed - _lastElapsed).inMicroseconds / 1000000.0;
     _lastElapsed = elapsed;
-    if (dt <= 0 || dt > 0.1) return;
+    if (dt <= 0) return;
+    if (dt > 0.05) dt = 0.05;
 
-    final progressFactor = _songProgress * 0.55;
-    final comboFactor = min(0.35, (_combo / 50.0) * 0.1);
-    final currentSpeed = _baseScrollSpeed * (1.0 + progressFactor + comboFactor);
+    final currentSpeed = _baseScrollSpeed * (1.0 + pow(_songProgress, 2.5) * 1.50);
 
     setState(() {
       for (final tile in _tiles) {
@@ -278,7 +309,9 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
       final highestTop = _tiles.isEmpty
           ? 1.0
           : _tiles.map((t) => t.y - (_tileHeightFactor * t.length)).reduce(min);
-      if (highestTop > -0.30 && !_songAudioFinished && _nextTileIndex < _totalNotes) {
+      final hasAudio = widget.song.assetAudio.isNotEmpty;
+      final canSpawn = hasAudio ? !_songAudioFinished : _nextTileIndex < _totalNotes;
+      if (highestTop > -0.30 && canSpawn) {
         _spawnTile();
       }
 
@@ -299,7 +332,8 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
         _songProgress = (_nextTileIndex / _totalNotes).clamp(0.0, 1.0);
       }
 
-      if ((_songAudioFinished || _nextTileIndex >= _totalNotes) && _tiles.every((t) => t.isHit)) {
+      final isComplete = hasAudio ? _songAudioFinished : _nextTileIndex >= _totalNotes;
+      if (isComplete && _tiles.every((t) => t.isHit)) {
         _triggerVictory();
       }
     });
@@ -402,9 +436,9 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
     GameTile? hitTile;
     for (final t in laneCandidates) {
       final tileTop = t.y - (_tileHeightFactor * t.length);
-      final isDirectTap = tapYFraction >= (tileTop - 0.08) && tapYFraction <= (t.y + 0.08);
-      final isTargetLineHit = (t.y >= _targetLineFactor - 0.18 && tileTop <= _targetLineFactor + 0.18) &&
-          ((tapYFraction - _targetLineFactor).abs() <= 0.18);
+      final isDirectTap = tapYFraction >= (tileTop - 0.04) && tapYFraction <= (t.y + 0.04);
+      final isTargetLineHit = (t.y >= _targetLineFactor - 0.09 && tileTop <= _targetLineFactor + 0.09) &&
+          ((tapYFraction - _targetLineFactor).abs() <= 0.09);
       if (isDirectTap || isTargetLineHit) {
         hitTile = t;
         break;
@@ -445,10 +479,10 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
     HitQuality quality;
     int addScore;
 
-    if (dist < 0.05) {
+    if (dist < 0.025) {
       quality = HitQuality.perfect;
       addScore = 100;
-    } else if (dist < 0.11) {
+    } else if (dist < 0.06) {
       quality = HitQuality.great;
       addScore = 80;
     } else {

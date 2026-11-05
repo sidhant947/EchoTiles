@@ -1,708 +1,69 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-//
-// This file is normally produced by `flutter gen-l10n` (see l10n.yaml and the
-// ARB sources in this directory). It was checked in so the project analyzes
-// and compiles before the first generation run; `flutter gen-l10n` (or any
-// `flutter run`/`flutter build`) regenerates it from the ARB files.
+import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-/// The translations for English (`en`).
-class AppLocalizationsEn extends AppLocalizations {
-  AppLocalizationsEn() : super('en');
-
-  @override
-  String get tagline {
-    return 'TAP TO THE BEAT';
-  }
-
-  @override
-  String get addSong {
-    return 'ADD SONG';
-  }
-
-  @override
-  String get songName {
-    return 'Song Name';
-  }
-
-  @override
-  String get songNameHint {
-    return 'Enter song title';
-  }
-
-  @override
-  String get chooseAudio {
-    return 'Choose Audio';
-  }
-
-  @override
-  String get cancel {
-    return 'CANCEL';
-  }
-
-  @override
-  String get add {
-    return 'ADD';
-  }
-
-  @override
-  String get addYourSong {
-    return 'Add your song';
-  }
-
-  @override
-  String get howToPlay {
-    return 'How to play';
-  }
-
-  @override
-  String get noSongsYet {
-    return 'NO SONGS YET';
-  }
-
-  @override
-  String get noSongsHint {
-    return 'Add your audio files below to start playing!';
-  }
-
-  @override
-  String bestScoreShort(int score) {
-    return 'BEST: $score';
-  }
-
-  @override
-  String get customArtist {
-    return 'Custom';
-  }
-
-  @override
-  String get settingsTitle {
-    return 'SETTINGS';
-  }
-
-  @override
-  String get hapticsSection {
-    return 'HAPTICS';
-  }
-
-  @override
-  String get hapticFeedback {
-    return 'Haptic Feedback';
-  }
-
-  @override
-  String get themeSection {
-    return 'THEME';
-  }
-
-  @override
-  String get languageSection {
-    return 'LANGUAGE';
-  }
-
-  @override
-  String get systemDefault {
-    return 'System default';
-  }
-
-  @override
-  String get langEnglish {
-    return 'English';
-  }
-
-  @override
-  String get langItalian {
-    return 'Italiano';
-  }
-
-  @override
-  String get resetHighScores {
-    return 'RESET HIGH SCORES';
-  }
-
-  @override
-  String get resetScoresTitle {
-    return 'Reset Scores?';
-  }
-
-  @override
-  String get resetScoresMessage {
-    return 'Are you sure you want to reset all saved high scores and stars?';
-  }
-
-  @override
-  String get reset {
-    return 'RESET';
-  }
-
-  @override
-  String get themeNameClean {
-    return 'Clean';
-  }
-
-  @override
-  String get themeNameDark {
-    return 'Dark';
-  }
-
-  @override
-  String get themeNameAmoled {
-    return 'AMOLED Dark';
-  }
-
-  @override
-  String get themeNameForest {
-    return 'Forest';
-  }
-
-  @override
-  String get themeNameOcean {
-    return 'Ocean';
-  }
-
-  @override
-  String get themeNameSunset {
-    return 'Sunset';
-  }
-
-  @override
-  String get paused {
-    return 'PAUSED';
-  }
-
-  @override
-  String get resume {
-    return 'RESUME';
-  }
-
-  @override
-  String get home {
-    return 'HOME';
-  }
-
-  @override
-  String get songCompleted {
-    return 'SONG COMPLETED!';
-  }
-
-  @override
-  String get outOfRhythm {
-    return 'OUT OF RHYTHM!';
-  }
-
-  @override
-  String get score {
-    return 'Score';
-  }
-
-  @override
-  String get bestScore {
-    return 'Best Score';
-  }
-
-  @override
-  String get playAgain {
-    return 'PLAY AGAIN';
-  }
-
-  @override
-  String get tryAgain {
-    return 'TRY AGAIN';
-  }
-
-  @override
-  String get start {
-    return 'START';
-  }
-
-  @override
-  String get qualityPerfect {
-    return 'PERFECT!';
-  }
-
-  @override
-  String get qualityGreat {
-    return 'GREAT!';
-  }
-
-  @override
-  String get qualityGood {
-    return 'GOOD';
-  }
-
-  @override
-  String get qualityMiss {
-    return 'MISS!';
-  }
-
-  @override
-  String comboLabel(int combo) {
-    return '${combo}x COMBO';
-  }
-
-  @override
-  String get howToPlayTitle {
-    return 'HOW TO PLAY';
-  }
-
-  @override
-  String get singleTapTitle {
-    return 'SINGLE TAP TILES';
-  }
-
-  @override
-  String get singleTapSubtitle {
-    return 'Tap each tile right as it hits the bottom line.';
-  }
-
-  @override
-  String get singleTapPoint1 {
-    return 'Tap when the tile reaches the white judgment line.';
-  }
-
-  @override
-  String get singleTapPoint2 {
-    return 'Tapping closer to the center gives PERFECT! rating.';
-  }
-
-  @override
-  String get singleTapPoint3 {
-    return 'A single tap clears the tile immediately.';
-  }
-
-  @override
-  String get holdTilesTitle {
-    return 'HOLD TILES';
-  }
-
-  @override
-  String get holdTilesSubtitle {
-    return 'Identified by the circle head and straight line.';
-  }
-
-  @override
-  String get holdTilesPoint1 {
-    return 'Tap the circle head when it hits the line, then keep holding.';
-  }
-
-  @override
-  String get holdTilesPoint2 {
-    return 'Holding charges bonus points and builds your combo.';
-  }
-
-  @override
-  String get holdTilesPoint3 {
-    return 'Releasing early won\'t cause a game over—any tap or hold is valid!';
-  }
-
-  @override
-  String get avoidMistakesTitle {
-    return 'AVOID MISTAKES';
-  }
-
-  @override
-  String get avoidMistakesSubtitle {
-    return 'Keep your song streak alive.';
-  }
-
-  @override
-  String get avoidMistakesPoint1 {
-    return 'Never tap an empty lane where no tile is passing.';
-  }
-
-  @override
-  String get avoidMistakesPoint2 {
-    return 'Don\'t let tiles scroll past the bottom without touching them.';
-  }
-
-  @override
-  String get avoidMistakesPoint3 {
-    return 'Play with multiple fingers for fast BPM songs.';
-  }
-
-  @override
-  String get judgmentLine {
-    return 'JUDGMENT LINE';
-  }
-
-  @override
-  String get tap {
-    return 'TAP';
-  }
-
-  @override
-  String get chargingCombo {
-    return 'CHARGING COMBO';
-  }
-
-  @override
-  String get missTriggerTitle {
-    return 'MISS TRIGGER';
-  }
-
-  @override
-  String get missTriggerText {
-    return 'Tapping empty spaces or letting tiles fall through ends your run immediately.';
-  }
-
-  @override
-  String get gotItLetsPlay {
-    return 'GOT IT, LET\'S PLAY!';
-  }
-}
-
-/// The translations for Italian (`it`).
-class AppLocalizationsIt extends AppLocalizations {
-  AppLocalizationsIt() : super('it');
-
-  @override
-  String get tagline {
-    return 'TOCCA A RITMO';
-  }
-
-  @override
-  String get addSong {
-    return 'AGGIUNGI CANZONE';
-  }
-
-  @override
-  String get songName {
-    return 'Nome canzone';
-  }
-
-  @override
-  String get songNameHint {
-    return 'Inserisci il titolo';
-  }
-
-  @override
-  String get chooseAudio {
-    return 'Scegli audio';
-  }
-
-  @override
-  String get cancel {
-    return 'ANNULLA';
-  }
-
-  @override
-  String get add {
-    return 'AGGIUNGI';
-  }
-
-  @override
-  String get addYourSong {
-    return 'Aggiungi la tua canzone';
-  }
-
-  @override
-  String get howToPlay {
-    return 'Come si gioca';
-  }
-
-  @override
-  String get noSongsYet {
-    return 'NESSUNA CANZONE';
-  }
-
-  @override
-  String get noSongsHint {
-    return 'Aggiungi i tuoi file audio qui sotto per iniziare a giocare!';
-  }
-
-  @override
-  String bestScoreShort(int score) {
-    return 'RECORD: $score';
-  }
-
-  @override
-  String get customArtist {
-    return 'Personalizzata';
-  }
-
-  @override
-  String get settingsTitle {
-    return 'IMPOSTAZIONI';
-  }
-
-  @override
-  String get hapticsSection {
-    return 'VIBRAZIONE';
-  }
-
-  @override
-  String get hapticFeedback {
-    return 'Feedback tattile';
-  }
-
-  @override
-  String get themeSection {
-    return 'TEMA';
-  }
-
-  @override
-  String get languageSection {
-    return 'LINGUA';
-  }
-
-  @override
-  String get systemDefault {
-    return 'Lingua di sistema';
-  }
-
-  @override
-  String get langEnglish {
-    return 'English';
-  }
-
-  @override
-  String get langItalian {
-    return 'Italiano';
-  }
-
-  @override
-  String get resetHighScores {
-    return 'AZZERA RECORD';
-  }
-
-  @override
-  String get resetScoresTitle {
-    return 'Azzerare i record?';
-  }
-
-  @override
-  String get resetScoresMessage {
-    return 'Vuoi davvero azzerare tutti i record e le stelle salvate?';
-  }
-
-  @override
-  String get reset {
-    return 'AZZERA';
-  }
-
-  @override
-  String get themeNameClean {
-    return 'Chiaro';
-  }
-
-  @override
-  String get themeNameDark {
-    return 'Scuro';
-  }
-
-  @override
-  String get themeNameAmoled {
-    return 'AMOLED Scuro';
-  }
-
-  @override
-  String get themeNameForest {
-    return 'Foresta';
-  }
-
-  @override
-  String get themeNameOcean {
-    return 'Oceano';
-  }
-
-  @override
-  String get themeNameSunset {
-    return 'Tramonto';
-  }
-
-  @override
-  String get paused {
-    return 'PAUSA';
-  }
-
-  @override
-  String get resume {
-    return 'RIPRENDI';
-  }
-
-  @override
-  String get home {
-    return 'HOME';
-  }
-
-  @override
-  String get songCompleted {
-    return 'CANZONE COMPLETATA!';
-  }
-
-  @override
-  String get outOfRhythm {
-    return 'FUORI RITMO!';
-  }
-
-  @override
-  String get score {
-    return 'Punteggio';
-  }
-
-  @override
-  String get bestScore {
-    return 'Record';
-  }
-
-  @override
-  String get playAgain {
-    return 'RIGIOCA';
-  }
-
-  @override
-  String get tryAgain {
-    return 'RIPROVA';
-  }
-
-  @override
-  String get start {
-    return 'START';
-  }
-
-  @override
-  String get qualityPerfect {
-    return 'PERFETTO!';
-  }
-
-  @override
-  String get qualityGreat {
-    return 'OTTIMO!';
-  }
-
-  @override
-  String get qualityGood {
-    return 'BUONO';
-  }
-
-  @override
-  String get qualityMiss {
-    return 'MANCATO!';
-  }
-
-  @override
-  String comboLabel(int combo) {
-    return '${combo}x COMBO';
-  }
-
-  @override
-  String get howToPlayTitle {
-    return 'COME SI GIOCA';
-  }
-
-  @override
-  String get singleTapTitle {
-    return 'TILES A TOCCO SINGOLO';
-  }
-
-  @override
-  String get singleTapSubtitle {
-    return 'Tocca ogni tile proprio quando raggiunge la linea in basso.';
-  }
-
-  @override
-  String get singleTapPoint1 {
-    return 'Tocca quando il tile raggiunge la linea di giudizio bianca.';
-  }
-
-  @override
-  String get singleTapPoint2 {
-    return 'Toccare più vicino al centro assegna la valutazione PERFETTO!.';
-  }
-
-  @override
-  String get singleTapPoint3 {
-    return 'Un singolo tocco rimuove subito il tile.';
-  }
-
-  @override
-  String get holdTilesTitle {
-    return 'TIENI PREMUTO I TILES';
-  }
-
-  @override
-  String get holdTilesSubtitle {
-    return 'Riconoscibili dalla testa circolare e dalla linea retta.';
-  }
-
-  @override
-  String get holdTilesPoint1 {
-    return 'Tocca la testa circolare quando raggiunge la linea, poi tieni premuto.';
-  }
-
-  @override
-  String get holdTilesPoint2 {
-    return 'Mantenere premuto carica punti bonus e aumenta il tuo combo.';
-  }
-
-  @override
-  String get holdTilesPoint3 {
-    return 'Rilasciare in anticipo non causa game over: qualsiasi tocco o pressione prolungata è valida!';
-  }
-
-  @override
-  String get avoidMistakesTitle {
-    return 'EVITA GLI ERRORI';
-  }
-
-  @override
-  String get avoidMistakesSubtitle {
-    return 'Non interrompere la tua canzone.';
-  }
-
-  @override
-  String get avoidMistakesPoint1 {
-    return 'Non toccare mai una corsia vuota in cui non sta passando nessun tile.';
-  }
-
-  @override
-  String get avoidMistakesPoint2 {
-    return 'Non lasciare che i tile superino il fondo dello schermo senza toccarli.';
-  }
-
-  @override
-  String get avoidMistakesPoint3 {
-    return 'Usa più dita per le canzoni con BPM veloci.';
-  }
-
-  @override
-  String get judgmentLine {
-    return 'LINEA DI GIUDIZIO';
-  }
-
-  @override
-  String get tap {
-    return 'TOCCA';
-  }
-
-  @override
-  String get chargingCombo {
-    return 'COMBO IN CARICA';
-  }
-
-  @override
-  String get missTriggerTitle {
-    return 'ERRORE FATALE';
-  }
-
-  @override
-  String get missTriggerText {
-    return 'Toccare spazi vuoti o lasciare cadere i tile senza toccarli termina subito la partita.';
-  }
-
-  @override
-  String get gotItLetsPlay {
-    return 'CHIARO, GIOCHIAMO!';
-  }
-}
-
+import 'app_localizations_en.dart';
+import 'app_localizations_it.dart';
+
+// ignore_for_file: type=lint
+
+/// Callers can lookup localized strings with an instance of AppLocalizations
+/// returned by `AppLocalizations.of(context)`.
+///
+/// Applications need to include `AppLocalizations.delegate()` in their app's
+/// `localizationDelegates` list, and the locales they support in the app's
+/// `supportedLocales` list. For example:
+///
+/// ```dart
+/// import 'l10n/app_localizations.dart';
+///
+/// return MaterialApp(
+///   localizationsDelegates: AppLocalizations.localizationsDelegates,
+///   supportedLocales: AppLocalizations.supportedLocales,
+///   home: MyApplicationHome(),
+/// );
+/// ```
+///
+/// ## Update pubspec.yaml
+///
+/// Please make sure to update your pubspec.yaml to include the following
+/// packages:
+///
+/// ```yaml
+/// dependencies:
+///   # Internationalization support.
+///   flutter_localizations:
+///     sdk: flutter
+///   intl: any # Use the pinned version from flutter_localizations
+///
+///   # Rest of dependencies
+/// ```
+///
+/// ## iOS Applications
+///
+/// iOS applications define key application metadata, including supported
+/// locales, in an Info.plist file that is built into the application bundle.
+/// To configure the locales supported by your app, you’ll need to edit this
+/// file.
+///
+/// First, open your project’s ios/Runner.xcworkspace Xcode workspace file.
+/// Then, in the Project Navigator, open the Info.plist file under the Runner
+/// project’s Runner folder.
+///
+/// Next, select the Information Property List item, select Add Item from the
+/// Editor menu, then select Localizations from the pop-up menu.
+///
+/// Select and expand the newly-created Localizations item then, for each
+/// locale your application supports, add a new item and select the locale
+/// you wish to add from the pop-up menu in the Value field. This list should
+/// be consistent with the languages listed in the AppLocalizations.supportedLocales
+/// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -716,24 +77,28 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
   ///
-  /// Returns a list of localizations delegates containing this delegate and
+  /// Returns a list of localizations delegates containing this delegate along with
   /// GlobalMaterialLocalizations.delegate, GlobalCupertinoLocalizations.delegate,
   /// and GlobalWidgetsLocalizations.delegate.
+  ///
+  /// Additional delegates can be added by appending to this list in
+  /// MaterialApp. This list does not have to be used at all if a custom list
+  /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('it')
+    Locale('it'),
   ];
 
-  // App branding
+  /// No description provided for @tagline.
   ///
   /// In en, this message translates to:
   /// **'TAP TO THE BEAT'**
@@ -1168,12 +533,10 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsIt();
   }
 
-  throw FlutterError.fromParts(<DiagnosticsNode>[
-    ErrorSummary(
-        'AppLocalizations.load threw an exception or returned null.'),
-    ErrorDescription(
-        'The locale "${locale.toString()}" is not supported by AppLocalizations.'),
-    ErrorHint(
-        'Supported locales are: ${AppLocalizations.supportedLocales.map((Locale l) => l.toString()).join(", ")}'),
-  ]);
+  throw FlutterError(
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
 }

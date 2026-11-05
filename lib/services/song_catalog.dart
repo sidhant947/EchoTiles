@@ -2,10 +2,20 @@ import '../models/game_models.dart';
 import 'storage_service.dart';
 
 class SongCatalog {
-  static const List<SongItem> defaultSongs = [];
+  static const List<SongItem> defaultSongs = [
+    SongItem(
+      id: 'default_brain_dance',
+      title: 'Brain Dance',
+      artist: 'Kevin MacLeod',
+      assetAudio: 'assets/songs/Brain Dance.mp3',
+      bpm: 124.0,
+      notesCount: 494,
+    ),
+  ];
 
   static List<SongItem> getSongs() {
-    final allSongs = StorageService.getCustomSongs();
+    final customSongs = StorageService.getCustomSongs();
+    final allSongs = [...defaultSongs, ...customSongs];
     return allSongs.map((song) {
       final hs = StorageService.getHighScore(song.id);
       final st = StorageService.getStars(song.id);
